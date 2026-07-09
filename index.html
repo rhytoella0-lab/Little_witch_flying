@@ -207,31 +207,96 @@ function startBGM() {
 // =====================================
 // 操作
 // =====================================
-function action(){
+// =====================================
+// 操作（修正版）
+// =====================================
+function action() {
   
-  if(inputLocked) return;
-
+  if (!player) return;
+  
+  if (inputLocked) return;
+  
   startBGM();
-
-  if(gameOver){
+  
+  if (gameOver) {
+    
     init();
+    
     return;
   }
-
-  if(player.jump < 3){
+  
+  
+  if (player.jump < 3) {
+    
     player.dy = -12;
+    
     player.jump++;
+    
   }
+  
 }
 
-document.addEventListener("keydown", e=>{
-  if(e.code === "Space"){
+
+// -------------------------------
+// キーボード Space
+// -------------------------------
+// =====================================
+// Spaceキー（安定版）
+// =====================================
+
+window.addEventListener("keydown", function(e) {
+  
+  if (e.keyCode === 32) {
+    
+    e.preventDefault();
+    
+    if (spacePressed) return;
+    
+    spacePressed = true;
+    
     action();
+    
   }
+  
 });
 
-document.addEventListener("touchstart", action);
-document.addEventListener("click", action);
+window.addEventListener("keyup", function(e) {
+  
+  if (e.keyCode === 32) {
+    
+    spacePressed = false;
+    
+  }
+  
+});
+
+// -------------------------------
+// マウスクリック
+// -------------------------------
+// -------------------------------
+// 画面全体クリック
+// -------------------------------
+window.addEventListener("mousedown", function(e) {
+  
+  e.preventDefault();
+  
+  action();
+  
+});
+
+
+// -------------------------------
+// 画面全体タッチ
+// -------------------------------
+window.addEventListener("touchstart", function(e) {
+  
+  e.preventDefault();
+  
+  window.focus();
+  
+  action();
+  
+}, { passive: false });
 
 // =====================================
 // 敵生成
