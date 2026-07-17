@@ -101,7 +101,7 @@ fishBlue.src = "fish blue.png";
 // =====================================
 const flyFrames = [];
 
-for(let i=1;i<=14;i++){
+for(let i=1;i<=20;i++){
   const img = new Image();
   img.src = `player_fly${i}.png`;
   flyFrames.push(img);
@@ -121,6 +121,12 @@ const flyOffsets = [
   { x: 472, y: -128 },
   { x: 471, y: -52 },
   { x: 471, y: -8 },
+  { x: 470, y: -7 },
+  { x: 470, y: -7 },
+  { x: 470, y: -7 },
+  { x: 470, y: -7 },
+  { x: 470, y: -7 },
+  { x: 470, y: -7 },
   { x: 470, y: -7 }
 ];
 
@@ -149,6 +155,9 @@ let bgmStarted = false;
 let sePlayed = false;
 
 let inputLocked = false;
+
+let spacePressed = false;
+
 // =====================================
 // フレーム制御（5FPS）
 // =====================================
